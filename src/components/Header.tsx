@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { navLinks } from '../data/content';
+import { useI18n } from '../i18n';
 import { Icon } from './Icon';
+import { LanguageToggle } from './LanguageToggle';
 
-/** Sticky top navigation with a responsive mobile menu. */
+/** Sticky top navigation with a responsive mobile menu and language toggle. */
 export function Header() {
+  const { t } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -34,7 +36,7 @@ export function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-7 lg:flex">
-          {navLinks.map((link) => (
+          {t.nav.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -45,28 +47,32 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-3 lg:flex">
+          <LanguageToggle />
           <a href="#cta" className="btn-primary">
-            Join AI Labs
+            {t.header.cta}
           </a>
         </div>
 
-        {/* Mobile menu toggle */}
-        <button
-          type="button"
-          onClick={() => setMenuOpen((v) => !v)}
-          className="inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700 lg:hidden"
-          aria-label="Toggle menu"
-        >
-          <Icon name={menuOpen ? 'close' : 'menu'} className="h-5 w-5" />
-        </button>
+        {/* Mobile controls */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <LanguageToggle />
+          <button
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            className="inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700"
+            aria-label="Toggle menu"
+          >
+            <Icon name={menuOpen ? 'close' : 'menu'} className="h-5 w-5" />
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu panel */}
       {menuOpen && (
         <div className="border-t border-slate-100 bg-white lg:hidden">
           <nav className="container-page flex flex-col gap-1 py-4">
-            {navLinks.map((link) => (
+            {t.nav.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -77,7 +83,7 @@ export function Header() {
               </a>
             ))}
             <a href="#cta" onClick={() => setMenuOpen(false)} className="btn-primary mt-2">
-              Join AI Labs
+              {t.header.cta}
             </a>
           </nav>
         </div>

@@ -1,23 +1,22 @@
-import { levels } from '../data/content';
+import { useI18n } from '../i18n';
 import { Icon } from './Icon';
 import { SectionHeading } from './SectionHeading';
 
 /** 4-level progression from AI Explorer to AI Founder, shown as a connected ladder. */
 export function LearningPathSection() {
+  const { t } = useI18n();
+  const path = t.path;
+
   return (
     <section id="path" className="container-page py-20 sm:py-24">
-      <SectionHeading
-        eyebrow="The learning path"
-        title="A journey that grows with your child"
-        subtitle="Students progress through four levels — from guided exploration to building startup-style products on their own."
-      />
+      <SectionHeading eyebrow={path.eyebrow} title={path.title} subtitle={path.subtitle} />
 
       <div className="relative mt-14">
         {/* Connecting line behind the cards (desktop) */}
         <div className="absolute left-0 right-0 top-7 hidden h-0.5 bg-gradient-to-r from-brand-200 via-brand-400 to-accent-400 lg:block" />
 
         <div className="grid gap-6 lg:grid-cols-4">
-          {levels.map((level, i) => (
+          {path.levels.map((level, i) => (
             <div key={level.title} className="relative">
               {/* Numbered node */}
               <div className="relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-accent-500 text-white shadow-soft">
@@ -33,7 +32,6 @@ export function LearningPathSection() {
                 </span>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{level.description}</p>
               </div>
-              {/* Step index for screen readers / mobile clarity */}
               <span className="sr-only">Step {i + 1}</span>
             </div>
           ))}

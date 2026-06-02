@@ -1,8 +1,10 @@
-import { navLinks } from '../data/content';
+import { useI18n } from '../i18n';
 import { Icon } from './Icon';
 
-/** Simple footer with brand, nav, audience note, and prototype disclaimer. */
+/** Simple footer with brand, nav, tagline, and prototype disclaimer. */
 export function Footer() {
+  const { t } = useI18n();
+
   return (
     <footer className="border-t border-slate-100 bg-white">
       <div className="container-page py-12">
@@ -17,15 +19,12 @@ export function Footer() {
                 AI<span className="text-brand-600">Labs</span>
               </span>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-slate-500">
-              An interdisciplinary AI project-based learning system for K-12 students — built for
-              parents, schools, and franchise partners.
-            </p>
+            <p className="mt-4 text-sm leading-relaxed text-slate-500">{t.footer.tagline}</p>
           </div>
 
           {/* Nav */}
           <nav className="flex flex-wrap gap-x-8 gap-y-3">
-            {navLinks.map((link) => (
+            {t.nav.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -38,8 +37,8 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-slate-100 pt-6 text-xs text-slate-400 sm:flex-row">
-          <p>© {new Date().getFullYear()} AI Labs. All rights reserved.</p>
-          <p>Static prototype — for presentation purposes only.</p>
+          <p>© {new Date().getFullYear()} AI Labs. {t.footer.rights}</p>
+          <p>{t.footer.prototype}</p>
         </div>
       </div>
     </footer>

@@ -1,7 +1,8 @@
-import type { Difficulty, Project } from '../data/content';
+import type { Difficulty, Project } from '../data/dictionary';
+import { useI18n } from '../i18n';
 import { Icon } from './Icon';
 
-// Color mapping for the difficulty badge.
+// Color mapping for the difficulty badge (keyed by the canonical English value).
 const difficultyStyles: Record<Difficulty, string> = {
   Beginner: 'bg-emerald-50 text-emerald-700',
   Intermediate: 'bg-amber-50 text-amber-700',
@@ -10,6 +11,8 @@ const difficultyStyles: Record<Difficulty, string> = {
 
 /** Student showcase project card: title, lab category, description, skills, difficulty. */
 export function ProjectCard({ project }: { project: Project }) {
+  const { t } = useI18n();
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-card transition-all hover:-translate-y-1 hover:shadow-soft">
       {/* Gradient "thumbnail" with the lab icon */}
@@ -18,7 +21,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <span
           className={`absolute right-3 top-3 rounded-full px-2.5 py-1 text-xs font-semibold ${difficultyStyles[project.difficulty]}`}
         >
-          {project.difficulty}
+          {t.showcase.difficultyLabels[project.difficulty]}
         </span>
       </div>
 
@@ -30,7 +33,9 @@ export function ProjectCard({ project }: { project: Project }) {
         <p className="mt-2 text-sm leading-relaxed text-slate-600">{project.description}</p>
 
         <div className="mt-auto pt-5">
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Skills learned</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+            {t.showcase.skillsLabel}
+          </p>
           <div className="mt-2 flex flex-wrap gap-2">
             {project.skills.map((skill) => (
               <span

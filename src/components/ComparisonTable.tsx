@@ -1,28 +1,27 @@
-import { comparison } from '../data/content';
+import { useI18n } from '../i18n';
 import { Icon } from './Icon';
 import { SectionHeading } from './SectionHeading';
 
 /** Side-by-side comparison: traditional coding class vs. AI Labs. */
 export function ComparisonTable() {
+  const { t } = useI18n();
+  const cmp = t.comparison;
+
   return (
     <section id="comparison" className="container-page py-20 sm:py-24">
-      <SectionHeading
-        eyebrow="The difference"
-        title="AI Labs vs. a traditional coding class"
-        subtitle="Same goal of teaching technology — a completely different experience and outcome."
-      />
+      <SectionHeading eyebrow={cmp.eyebrow} title={cmp.title} subtitle={cmp.subtitle} />
 
       <div className="mx-auto mt-14 max-w-4xl overflow-hidden rounded-2xl border border-slate-100 shadow-card">
         {/* Header row */}
         <div className="grid grid-cols-2 text-sm font-bold">
-          <div className="bg-slate-100 px-5 py-4 text-slate-500 sm:px-8">Traditional Coding Class</div>
+          <div className="bg-slate-100 px-5 py-4 text-slate-500 sm:px-8">{cmp.traditionalHead}</div>
           <div className="bg-gradient-to-r from-brand-600 to-accent-500 px-5 py-4 text-white sm:px-8">
-            AI Labs
+            {cmp.aiLabsHead}
           </div>
         </div>
 
         {/* Comparison rows */}
-        {comparison.map((row, i) => (
+        {cmp.rows.map((row, i) => (
           <div
             key={row.aiLabs}
             className={`grid grid-cols-2 ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'}`}

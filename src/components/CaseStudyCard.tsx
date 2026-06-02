@@ -1,4 +1,5 @@
-import { buildJourney, type CaseStudy } from '../data/content';
+import type { CaseStudy } from '../data/dictionary';
+import { useI18n } from '../i18n';
 import { Icon } from './Icon';
 import { MockScreen } from './MockScreen';
 
@@ -7,6 +8,10 @@ import { MockScreen } from './MockScreen';
  * (controlled by `flip`) so the long list reads like a showcase, not a column.
  */
 export function CaseStudyCard({ data, flip }: { data: CaseStudy; flip?: boolean }) {
+  const { t } = useI18n();
+  const labels = t.cases.labels;
+  const journey = t.cases.buildJourney;
+
   return (
     <article className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-card">
       <div className={`grid gap-0 lg:grid-cols-2 ${flip ? 'lg:[&>*:first-child]:order-2' : ''}`}>
@@ -33,7 +38,7 @@ export function CaseStudyCard({ data, flip }: { data: CaseStudy; flip?: boolean 
           {/* Real-world problem */}
           <div className="mt-6">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-              The real-world problem
+              {labels.problem}
             </p>
             <p className="mt-1.5 text-sm leading-relaxed text-slate-700">{data.problem}</p>
           </div>
@@ -41,7 +46,7 @@ export function CaseStudyCard({ data, flip }: { data: CaseStudy; flip?: boolean 
           {/* What they build */}
           <div className="mt-5">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-              What the student builds
+              {labels.builds}
             </p>
             <p className="mt-1.5 text-sm leading-relaxed text-slate-700">{data.builds}</p>
           </div>
@@ -50,7 +55,7 @@ export function CaseStudyCard({ data, flip }: { data: CaseStudy; flip?: boolean 
           <div className="mt-5 grid gap-5 sm:grid-cols-2">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                Key features
+                {labels.features}
               </p>
               <ul className="mt-2 space-y-1.5">
                 {data.features.map((f) => (
@@ -63,7 +68,7 @@ export function CaseStudyCard({ data, flip }: { data: CaseStudy; flip?: boolean 
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                Skills learned
+                {labels.skills}
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {data.skills.map((s) => (
@@ -83,7 +88,7 @@ export function CaseStudyCard({ data, flip }: { data: CaseStudy; flip?: boolean 
             <Icon name="folder" className="h-5 w-5 shrink-0 text-brand-600" />
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">
-                Portfolio outcome
+                {labels.outcome}
               </p>
               <p className="mt-0.5 text-sm font-medium text-slate-700">{data.outcome}</p>
             </div>
@@ -97,10 +102,10 @@ export function CaseStudyCard({ data, flip }: { data: CaseStudy; flip?: boolean 
           {/* Student Build Journey timeline */}
           <div className="mt-6">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-              Student build journey
+              {labels.journey}
             </p>
             <ol className="mt-3 space-y-2.5">
-              {buildJourney.map((step, i) => (
+              {journey.map((step, i) => (
                 <li key={step} className="flex items-center gap-3">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-accent-500 text-[11px] font-bold text-white">
                     {i + 1}

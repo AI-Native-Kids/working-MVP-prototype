@@ -1,8 +1,10 @@
-import type { Lab } from '../data/content';
+import type { Lab } from '../data/dictionary';
+import { useI18n } from '../i18n';
 import { Icon } from './Icon';
 
 /** Single AI Lab card: icon header, description, example projects, and skill tags. */
 export function LabCard({ lab }: { lab: Lab }) {
+  const { t } = useI18n();
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-card transition-all hover:-translate-y-1 hover:shadow-soft">
       {/* Gradient header strip */}
@@ -19,7 +21,7 @@ export function LabCard({ lab }: { lab: Lab }) {
 
         {/* Example projects */}
         <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-slate-400">
-          Example projects
+          {t.labs.projectsLabel}
         </p>
         <ul className="mt-2 space-y-1.5">
           {lab.projects.map((project) => (

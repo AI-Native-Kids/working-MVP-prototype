@@ -1,19 +1,18 @@
-import { problemPoints } from '../data/content';
+import { useI18n } from '../i18n';
 import { Icon } from './Icon';
 import { SectionHeading } from './SectionHeading';
 
 /** Explains why traditional, syntax-first coding classes fall short today. */
 export function ProblemSection() {
+  const { t } = useI18n();
+  const problem = t.problem;
+
   return (
     <section id="problem" className="container-page py-20 sm:py-24">
-      <SectionHeading
-        eyebrow="The problem"
-        title="Coding class as we knew it is outdated"
-        subtitle="When AI can write the code, memorizing syntax stops being the point. Students need a higher level of thinking — and a new way to learn."
-      />
+      <SectionHeading eyebrow={problem.eyebrow} title={problem.title} subtitle={problem.subtitle} />
 
       <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {problemPoints.map((point) => (
+        {problem.points.map((point) => (
           <div
             key={point.title}
             className="group rounded-2xl border border-slate-100 bg-white p-6 shadow-card transition-shadow hover:shadow-soft"

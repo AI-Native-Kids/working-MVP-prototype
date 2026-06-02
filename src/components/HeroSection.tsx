@@ -1,15 +1,11 @@
-import { heroStats } from '../data/content';
-import { Icon, type IconName } from './Icon';
-
-// Steps shown in the hero preview card (typed so icon names stay valid).
-const previewRows: { icon: IconName; label: string; text: string }[] = [
-  { icon: 'chat', label: 'Ask AI', text: '“Help me build a fraction game for 4th graders.”' },
-  { icon: 'code', label: 'Vibe Coding', text: 'Generating interactive components…' },
-  { icon: 'presentation', label: 'Present', text: 'Ready for Demo Day 🎉' },
-];
+import { useI18n } from '../i18n';
+import { Icon } from './Icon';
 
 /** Top hero: headline, subtitle, CTAs, a glassy preview card, and quick stats. */
 export function HeroSection() {
+  const { t } = useI18n();
+  const hero = t.hero;
+
   return (
     <section id="top" className="relative overflow-hidden bg-hero-gradient">
       {/* Decorative soft blobs */}
@@ -21,32 +17,30 @@ export function HeroSection() {
         <div className="animate-fade-up">
           <span className="eyebrow">
             <Icon name="sparkles" className="h-3.5 w-3.5" />
-            Interdisciplinary AI learning
+            {hero.eyebrow}
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Build the Future with{' '}
+            {hero.titlePre}
             <span className="bg-gradient-to-r from-brand-600 to-accent-500 bg-clip-text text-transparent">
-              Vibe Coding
+              {hero.titleHighlight}
             </span>
+            {hero.titlePost}
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
-            An interdisciplinary AI project-based learning system where students learn coding, subject
-            knowledge, problem-solving, and product thinking by building real-world projects.
-          </p>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">{hero.subtitle}</p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a href="#labs" className="btn-primary">
-              Explore AI Labs
+              {hero.ctaPrimary}
               <Icon name="arrow-right" className="h-4 w-4" />
             </a>
             <a href="#projects" className="btn-secondary">
-              View Student Projects
+              {hero.ctaSecondary}
             </a>
           </div>
 
           {/* Quick stats */}
           <dl className="mt-12 grid max-w-lg grid-cols-2 gap-6 sm:grid-cols-4">
-            {heroStats.map((stat) => (
+            {hero.stats.map((stat) => (
               <div key={stat.label}>
                 <dt className="text-2xl font-extrabold text-slate-900 sm:text-3xl">{stat.value}</dt>
                 <dd className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">
@@ -68,7 +62,7 @@ export function HeroSection() {
             </div>
 
             <div className="mt-6 space-y-3">
-              {previewRows.map((row) => (
+              {hero.preview.map((row) => (
                 <div
                   key={row.label}
                   className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-white p-4 shadow-card"
@@ -85,8 +79,8 @@ export function HeroSection() {
             </div>
 
             <div className="mt-6 rounded-2xl bg-gradient-to-r from-brand-600 to-accent-500 p-4 text-white">
-              <p className="text-sm font-semibold">Project shipped in 16 weeks</p>
-              <p className="mt-1 text-xs text-white/80">From idea → MVP → portfolio piece</p>
+              <p className="text-sm font-semibold">{hero.previewFooterTitle}</p>
+              <p className="mt-1 text-xs text-white/80">{hero.previewFooterSub}</p>
             </div>
           </div>
         </div>
