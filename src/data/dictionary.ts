@@ -143,7 +143,57 @@ export interface Dictionary {
     aiLabsHead: string;
     rows: ComparisonRow[];
   };
+  testimonials: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    items: { quote: string; name: string; role: string }[];
+  };
+  pricing: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    note: string;
+    popular: string;
+    plans: {
+      name: string;
+      price: string;
+      period: string;
+      description: string;
+      features: string[];
+      cta: string;
+      intent: 'join' | 'curriculum';
+      highlighted: boolean;
+    }[];
+  };
+  faq: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    items: { q: string; a: string }[];
+  };
   cta: { title: string; subtitle: string; primary: string; secondary: string };
+  lead: {
+    titleJoin: string;
+    titleCurriculum: string;
+    subtitle: string;
+    name: string;
+    contact: string;
+    contactPh: string;
+    role: string;
+    roles: { parent: string; school: string; franchise: string; other: string };
+    childAge: string;
+    childAgePh: string;
+    message: string;
+    messagePh: string;
+    submit: string;
+    sending: string;
+    successTitle: string;
+    successBody: string;
+    close: string;
+    mailtoNote: string;
+    required: string;
+  };
   footer: { tagline: string; rights: string; prototype: string };
   mock: {
     browser: string;
@@ -169,6 +219,8 @@ const en: Dictionary = {
     { label: 'Demo Cases', href: '#cases' },
     { label: 'Projects', href: '#projects' },
     { label: 'For Parents', href: '#parents' },
+    { label: 'Pricing', href: '#pricing' },
+    { label: 'FAQ', href: '#faq' },
   ],
   hero: {
     eyebrow: 'Interdisciplinary AI learning',
@@ -568,12 +620,128 @@ const en: Dictionary = {
       { traditional: 'Hard to show real-world value', aiLabs: 'Portfolio-ready outcomes' },
     ],
   },
+  testimonials: {
+    eyebrow: 'What families say',
+    title: 'Loved by parents and students',
+    subtitle: 'Real reactions from families and partners in the AI Labs program.',
+    items: [
+      {
+        quote:
+          'My daughter went from “I’m not a coder” to demoing her own study-planner app at dinner. The confidence is the real win.',
+        name: 'Jennifer L.',
+        role: 'Parent of a 13-year-old',
+      },
+      {
+        quote:
+          'Finally a program where the kids build something real. The projects connect straight back to what they learn at school.',
+        name: 'Mr. Chen',
+        role: 'Middle school STEM coordinator',
+      },
+      {
+        quote:
+          'I built a game my little brother actually plays. I learned more in 16 weeks than a whole year of tutorials.',
+        name: 'Marcus, age 14',
+        role: 'AI Founder track student',
+      },
+    ],
+  },
+  pricing: {
+    eyebrow: 'Plans & enrollment',
+    title: 'Simple plans for every learner',
+    subtitle: 'Start with a single lab or commit to the full path. School and franchise partners get custom packages.',
+    note: 'Illustrative pricing for this prototype. Contact us for current rates and scholarships.',
+    popular: 'Most popular',
+    plans: [
+      {
+        name: 'Single Lab',
+        price: '$390',
+        period: '/ 8-week lab',
+        description: 'Try one AI Lab and ship a first real project.',
+        features: ['1 AI Lab of your choice', 'Weekly live sessions', '1 portfolio project', 'Demo Day showcase'],
+        cta: 'Join AI Labs',
+        intent: 'join',
+        highlighted: false,
+      },
+      {
+        name: 'Full Path',
+        price: '$1,290',
+        period: '/ 16-week term',
+        description: 'The complete AI Startup Lab journey from idea to MVP.',
+        features: ['Full 16-week curriculum', 'Small-group mentoring', 'Portfolio-ready MVP', '1:1 project feedback', 'Demo Day with parents'],
+        cta: 'Join AI Labs',
+        intent: 'join',
+        highlighted: true,
+      },
+      {
+        name: 'School / Partner',
+        price: 'Custom',
+        period: '',
+        description: 'Bring AI Labs to your school or open a franchise.',
+        features: ['Full curriculum license', 'Teacher training', 'Co-branded materials', 'Ongoing support'],
+        cta: 'Request curriculum overview',
+        intent: 'curriculum',
+        highlighted: false,
+      },
+    ],
+  },
+  faq: {
+    eyebrow: 'Questions',
+    title: 'Frequently asked questions',
+    subtitle: 'Everything parents and partners usually want to know.',
+    items: [
+      {
+        q: 'Does my child need prior coding experience?',
+        a: 'No. Students start by describing ideas in plain language and collaborating with AI. We meet every learner at their level — from total beginners to advanced builders.',
+      },
+      {
+        q: 'What ages is AI Labs for?',
+        a: 'Ages 8 and up. Our four levels (Explorer → Builder → Creator → Founder) match content and difficulty to each age group.',
+      },
+      {
+        q: 'What exactly is “Vibe Coding”?',
+        a: 'It’s building software by describing what you want in natural language and refining it with AI — so students focus on problem-solving, design and product thinking instead of memorizing syntax.',
+      },
+      {
+        q: 'What will my child have at the end?',
+        a: 'A finished, working project they present on Demo Day — plus a portfolio piece they can show for school and program applications.',
+      },
+      {
+        q: 'Is AI Labs online or in person?',
+        a: 'Both options are available depending on your location. Request a curriculum overview and we’ll share the formats near you.',
+      },
+      {
+        q: 'How do schools or franchise partners get started?',
+        a: 'Use “Request curriculum overview” and tell us about your school or organization. We’ll follow up with licensing, training and co-branding details.',
+      },
+    ],
+  },
   cta: {
     title: 'Start Building Real Projects with AI',
     subtitle:
       'Give students the skills, confidence, and portfolio to thrive in an AI-driven world. Join AI Labs or request a full curriculum overview for your school or program.',
     primary: 'Join AI Labs',
     secondary: 'Request Curriculum Overview',
+  },
+  lead: {
+    titleJoin: 'Join AI Labs',
+    titleCurriculum: 'Request curriculum overview',
+    subtitle: "Tell us a little about you and we'll be in touch shortly.",
+    name: 'Your name',
+    contact: 'Email or phone',
+    contactPh: 'you@example.com',
+    role: 'I am a',
+    roles: { parent: 'Parent', school: 'School partner', franchise: 'Franchise partner', other: 'Other' },
+    childAge: "Child's age (optional)",
+    childAgePh: 'e.g. 11',
+    message: 'Message (optional)',
+    messagePh: 'Anything you’d like us to know…',
+    submit: 'Send',
+    sending: 'Sending…',
+    successTitle: 'Thank you! 🎉',
+    successBody: "We've received your request and will get back to you soon.",
+    close: 'Close',
+    mailtoNote: 'This opens your email app to send us the details.',
+    required: 'Please fill in your name and contact.',
   },
   footer: {
     tagline:
@@ -629,6 +797,8 @@ const zh: Dictionary = {
     { label: '案例演示', href: '#cases' },
     { label: '学生作品', href: '#projects' },
     { label: '致家长', href: '#parents' },
+    { label: '价格', href: '#pricing' },
+    { label: '常见问题', href: '#faq' },
   ],
   hero: {
     eyebrow: '跨学科 AI 学习',
@@ -948,12 +1118,125 @@ const zh: Dictionary = {
       { traditional: '难以体现真实价值', aiLabs: '可进作品集的成果' },
     ],
   },
+  testimonials: {
+    eyebrow: '家长怎么说',
+    title: '深受家长与学生喜爱',
+    subtitle: '来自 AI Labs 项目中家长与合作伙伴的真实反馈。',
+    items: [
+      {
+        quote: '我女儿从「我不是搞编程的料」,到在饭桌上给我们演示自己做的学习规划应用。这份自信才是最大的收获。',
+        name: 'Jennifer L.',
+        role: '13 岁孩子的家长',
+      },
+      {
+        quote: '终于有一个让孩子真正动手做出东西的项目。这些项目能直接对应到他们在学校学的内容。',
+        name: '陈老师',
+        role: '初中 STEM 教研负责人',
+      },
+      {
+        quote: '我做了一个我弟弟真的会玩的游戏。这 16 周学到的,比看一整年教程还多。',
+        name: 'Marcus,14 岁',
+        role: 'AI 创始人阶段学员',
+      },
+    ],
+  },
+  pricing: {
+    eyebrow: '价格与报名',
+    title: '适合每位学习者的简单方案',
+    subtitle: '可以先从单个实验室开始,也可以选择完整学习路径。学校与加盟伙伴提供定制方案。',
+    note: '本原型中的价格仅为示例,具体费用与奖学金请联系我们。',
+    popular: '最受欢迎',
+    plans: [
+      {
+        name: '单个实验室',
+        price: '¥2,800',
+        period: ' / 8 周课程',
+        description: '体验一个 AI 实验室,完成第一个真实项目。',
+        features: ['任选 1 个 AI 实验室', '每周直播课', '1 个作品集项目', 'Demo Day 展示'],
+        cta: '加入 AI Labs',
+        intent: 'join',
+        highlighted: false,
+      },
+      {
+        name: '完整路径',
+        price: '¥9,200',
+        period: ' / 16 周学期',
+        description: '完整的 AI 创业实验室旅程,从创意到 MVP。',
+        features: ['完整 16 周课程', '小班导师辅导', '可进作品集的 MVP', '一对一项目反馈', '家长参与的 Demo Day'],
+        cta: '加入 AI Labs',
+        intent: 'join',
+        highlighted: true,
+      },
+      {
+        name: '学校 / 合作',
+        price: '定制',
+        period: '',
+        description: '把 AI Labs 引入你的学校,或开设加盟。',
+        features: ['完整课程授权', '师资培训', '联合品牌物料', '持续支持'],
+        cta: '索取课程介绍',
+        intent: 'curriculum',
+        highlighted: false,
+      },
+    ],
+  },
+  faq: {
+    eyebrow: '常见问题',
+    title: '常见问题解答',
+    subtitle: '家长与合作伙伴通常关心的问题,都在这里。',
+    items: [
+      {
+        q: '孩子需要有编程基础吗?',
+        a: '不需要。学生从用日常语言描述想法、与 AI 协作开始。我们会根据每个孩子的水平因材施教 —— 从零基础到进阶都可以。',
+      },
+      {
+        q: 'AI Labs 适合什么年龄?',
+        a: '8 岁及以上。四个阶段(探索者 → 构建者 → 创造者 → 创始人)会根据年龄匹配相应的内容与难度。',
+      },
+      {
+        q: '“Vibe Coding”到底是什么?',
+        a: '就是用自然语言描述你想要的功能,再借助 AI 不断打磨来构建软件 —— 让学生专注于问题解决、设计与产品思维,而不是死记语法。',
+      },
+      {
+        q: '课程结束后孩子能得到什么?',
+        a: '一个在 Demo Day 上展示的、完整可运行的项目 —— 以及一份可用于升学和项目申请的作品集成果。',
+      },
+      {
+        q: 'AI Labs 是线上还是线下?',
+        a: '两种形式都有,取决于你所在的地区。索取课程介绍,我们会告诉你附近可选的上课形式。',
+      },
+      {
+        q: '学校或加盟伙伴如何开始合作?',
+        a: '点击「索取课程介绍」,告诉我们你的学校或机构情况。我们会就授权、培训与联合品牌等细节与你联系。',
+      },
+    ],
+  },
   cta: {
     title: '开始用 AI 打造真实项目',
     subtitle:
       '让孩子拥有在 AI 时代脱颖而出的能力、自信与作品集。加入 AI Labs,或为你的学校 / 项目索取完整课程介绍。',
     primary: '加入 AI Labs',
     secondary: '索取课程介绍',
+  },
+  lead: {
+    titleJoin: '加入 AI Labs',
+    titleCurriculum: '索取课程介绍',
+    subtitle: '留下你的信息,我们会尽快与你联系。',
+    name: '你的称呼',
+    contact: '邮箱或电话',
+    contactPh: 'you@example.com',
+    role: '我是',
+    roles: { parent: '家长', school: '学校合作方', franchise: '加盟伙伴', other: '其他' },
+    childAge: '孩子年龄(选填)',
+    childAgePh: '例如 11',
+    message: '留言(选填)',
+    messagePh: '想让我们了解的任何信息…',
+    submit: '提交',
+    sending: '提交中…',
+    successTitle: '感谢你! 🎉',
+    successBody: '我们已收到你的信息,会尽快与你联系。',
+    close: '关闭',
+    mailtoNote: '这会打开你的邮件应用,把信息发送给我们。',
+    required: '请填写称呼和联系方式。',
   },
   footer: {
     tagline: '一套面向 K-12 学生的跨学科 AI 项目制学习系统 —— 为家长、学校与加盟伙伴而打造。',

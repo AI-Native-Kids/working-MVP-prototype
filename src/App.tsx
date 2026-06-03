@@ -1,4 +1,6 @@
 import { LanguageProvider } from './i18n';
+import { useAnalytics } from './analytics';
+import { LeadModalProvider } from './components/LeadModal';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { ProblemSection } from './components/ProblemSection';
@@ -9,7 +11,10 @@ import { CourseTimeline } from './components/CourseTimeline';
 import { ShowcaseSection } from './components/ShowcaseSection';
 import { CaseStudiesSection } from './components/CaseStudiesSection';
 import { WhyParentsSection } from './components/WhyParentsSection';
+import { TestimonialsSection } from './components/TestimonialsSection';
 import { ComparisonTable } from './components/ComparisonTable';
+import { PricingSection } from './components/PricingSection';
+import { FaqSection } from './components/FaqSection';
 import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
 
@@ -20,25 +25,32 @@ import { Footer } from './components/Footer';
  * driven by the LanguageProvider (English / 中文).
  */
 export default function App() {
+  useAnalytics(); // loads GA only when a measurement ID is configured
+
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-white text-slate-800">
-        <Header />
-        <main>
-          <HeroSection />
-          <ProblemSection />
-          <LearningModelSection />
-          <LabsSection />
-          <LearningPathSection />
-          <CourseTimeline />
-          <ShowcaseSection />
-          <CaseStudiesSection />
-          <WhyParentsSection />
-          <ComparisonTable />
-          <CTASection />
-        </main>
-        <Footer />
-      </div>
+      <LeadModalProvider>
+        <div className="min-h-screen bg-white text-slate-800">
+          <Header />
+          <main>
+            <HeroSection />
+            <ProblemSection />
+            <LearningModelSection />
+            <LabsSection />
+            <LearningPathSection />
+            <CourseTimeline />
+            <ShowcaseSection />
+            <CaseStudiesSection />
+            <WhyParentsSection />
+            <TestimonialsSection />
+            <ComparisonTable />
+            <PricingSection />
+            <FaqSection />
+            <CTASection />
+          </main>
+          <Footer />
+        </div>
+      </LeadModalProvider>
     </LanguageProvider>
   );
 }

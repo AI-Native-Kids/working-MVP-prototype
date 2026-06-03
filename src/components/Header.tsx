@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useI18n } from '../i18n';
+import { useLead } from './LeadModal';
 import { Icon } from './Icon';
 import { LanguageToggle } from './LanguageToggle';
 
 /** Sticky top navigation with a responsive mobile menu and language toggle. */
 export function Header() {
   const { t } = useI18n();
+  const { open } = useLead();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -35,7 +37,7 @@ export function Header() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-5 xl:flex">
           {t.nav.map((link) => (
             <a
               key={link.href}
@@ -47,15 +49,15 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <LanguageToggle />
-          <a href="#cta" className="btn-primary">
+          <button type="button" onClick={() => open('join')} className="btn-primary">
             {t.header.cta}
-          </a>
+          </button>
         </div>
 
         {/* Mobile controls */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <LanguageToggle />
           <button
             type="button"
@@ -70,7 +72,7 @@ export function Header() {
 
       {/* Mobile menu panel */}
       {menuOpen && (
-        <div className="border-t border-slate-100 bg-white lg:hidden">
+        <div className="border-t border-slate-100 bg-white xl:hidden">
           <nav className="container-page flex flex-col gap-1 py-4">
             {t.nav.map((link) => (
               <a
@@ -82,9 +84,16 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-            <a href="#cta" onClick={() => setMenuOpen(false)} className="btn-primary mt-2">
+            <button
+              type="button"
+              onClick={() => {
+                setMenuOpen(false);
+                open('join');
+              }}
+              className="btn-primary mt-2"
+            >
               {t.header.cta}
-            </a>
+            </button>
           </nav>
         </div>
       )}

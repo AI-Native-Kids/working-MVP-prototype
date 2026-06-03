@@ -1,4 +1,5 @@
 import { useI18n } from '../i18n';
+import { useLead } from './LeadModal';
 import { Icon } from './Icon';
 
 /**
@@ -7,6 +8,7 @@ import { Icon } from './Icon';
  */
 export function WhyParentsSection() {
   const { t } = useI18n();
+  const { open } = useLead();
   const parents = t.parents;
 
   return (
@@ -19,10 +21,10 @@ export function WhyParentsSection() {
             {parents.title}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{parents.subtitle}</p>
-          <a href="#cta" className="btn-primary mt-8">
+          <button type="button" onClick={() => open('curriculum')} className="btn-primary mt-8">
             {parents.cta}
             <Icon name="arrow-right" className="h-4 w-4" />
-          </a>
+          </button>
         </div>
 
         {/* Right benefits list */}

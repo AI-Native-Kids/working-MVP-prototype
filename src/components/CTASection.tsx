@@ -1,9 +1,11 @@
 import { useI18n } from '../i18n';
+import { useLead } from './LeadModal';
 import { Icon } from './Icon';
 
 /** Closing call-to-action band with gradient background. */
 export function CTASection() {
   const { t } = useI18n();
+  const { open } = useLead();
   const cta = t.cta;
 
   return (
@@ -20,19 +22,21 @@ export function CTASection() {
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="#"
+            <button
+              type="button"
+              onClick={() => open('join')}
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-7 py-3 text-sm font-semibold text-brand-700 shadow-soft transition-transform hover:-translate-y-0.5"
             >
               {cta.primary}
               <Icon name="arrow-right" className="h-4 w-4" />
-            </a>
-            <a
-              href="#"
+            </button>
+            <button
+              type="button"
+              onClick={() => open('curriculum')}
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/10 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
             >
               {cta.secondary}
-            </a>
+            </button>
           </div>
         </div>
       </div>
