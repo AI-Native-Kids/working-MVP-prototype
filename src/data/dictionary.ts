@@ -1149,7 +1149,7 @@ const zh: Dictionary = {
     plans: [
       {
         name: '单个实验室',
-        price: '¥2,800',
+        price: '$390',
         period: ' / 8 周课程',
         description: '体验一个 AI 实验室,完成第一个真实项目。',
         features: ['任选 1 个 AI 实验室', '每周直播课', '1 个作品集项目', 'Demo Day 展示'],
@@ -1159,7 +1159,7 @@ const zh: Dictionary = {
       },
       {
         name: '完整路径',
-        price: '¥9,200',
+        price: '$1,290',
         period: ' / 16 周学期',
         description: '完整的 AI 创业实验室旅程,从创意到 MVP。',
         features: ['完整 16 周课程', '小班导师辅导', '可进作品集的 MVP', '一对一项目反馈', '家长参与的 Demo Day'],
