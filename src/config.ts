@@ -12,9 +12,17 @@ export const config = {
   /**
    * Form submission endpoint. Create a free form at https://formspree.io
    * (or https://tally.so) and paste the endpoint URL here, e.g.
-   * 'https://formspree.io/f/abcdwxyz'. Leave empty to use the email fallback.
+   * 'https://formspree.io/f/abcdwxyz'. Leave empty to use demo/email fallback.
    */
   formEndpoint: '',
+
+  /**
+   * Demo/test mode for the lead form. When true (and no formEndpoint is set),
+   * submitting simulates success WITHOUT sending anything: the entry is saved
+   * to localStorage under `ai-labs-leads` and logged to the console so you can
+   * review test submissions. Set to false to use the real email fallback.
+   */
+  demoMode: true,
 
   /**
    * Google Analytics 4 measurement ID, e.g. 'G-XXXXXXXXXX'. Get one at

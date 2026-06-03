@@ -68,10 +68,33 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    // Demo/test mode: simulate success and keep the entry locally for review.
+    if (config.demoMode) {
+      saveDemoLead(payload);
+      setStatus('success');
+      trackEvent('lead_submit', { intent, method: 'demo' });
+      return;
+    }
+
     // Fallback: open the user's email client pre-filled.
     openMailto(payload);
     setStatus('success');
     trackEvent('lead_submit', { intent, method: 'mailto' });
+  }
+
+  /** Stores a test submission in localStorage and logs it (no network). */
+  function saveDemoLead(data: Record<string, string>) {
+    const entry = { ...data, submittedAt: new Date().toISOString() };
+    try {
+      const key = 'ai-labs-leads';
+      const existing = JSON.parse(window.localStorage.getItem(key) || '[]');
+      existing.push(entry);
+      window.localStorage.setItem(key, JSON.stringify(existing));
+    } catch {
+      /* ignore storage errors */
+    }
+    // eslint-disable-next-line no-console
+    console.log('[AI Labs] Demo lead captured (not sent):', entry);
   }
 
   function openMailto(data: Record<string, string>) {
@@ -163,7 +186,7 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
                 <button type="submit" disabled={status === 'sending'} className="btn-primary mt-5 w-full">
                   {status === 'sending' ? lead.sending : lead.submit}
                 </button>
-                {!config.formEndpoint && (
+                {!config.formEndpoint && !config.demoMode && (
                   <p className="mt-3 text-center text-xs text-slate-400">{lead.mailtoNote}</p>
                 )}
               </form>
